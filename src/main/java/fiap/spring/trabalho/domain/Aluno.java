@@ -1,9 +1,14 @@
 package fiap.spring.trabalho.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+
 
 @Entity
 public class Aluno implements Serializable{
@@ -14,6 +19,9 @@ public class Aluno implements Serializable{
 	private Integer Rm;	
 	private String nome;
 	private String curso;
+	
+	@OneToMany(mappedBy="aluno")
+	private List<Transacao> transacoes = new ArrayList<>();
 	
 	public Aluno(){
 		
@@ -43,5 +51,14 @@ public class Aluno implements Serializable{
 	public void setCurso(String curso) {
 		this.curso = curso;
 	}
+
+	public List<Transacao> getTransacoes() {
+		return transacoes;
+	}
+
+	public void setTransacoes(List<Transacao> transacoes) {
+		this.transacoes = transacoes;
+	}
+	
 	
 }
